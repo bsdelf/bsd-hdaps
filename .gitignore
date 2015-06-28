@@ -1,0 +1,4 @@
+hdapsmonitor
+*.o
+*.ko
+*.swp

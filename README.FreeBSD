@@ -1,0 +1,49 @@
+thinkpad_ec and hdaps ported to FreeBSD by Maik Ehinger <m.ehinger@ltur.de>
+smapi not ported yet!
+
+INSTALL:
+
+To build and install you must have kernel sources installed: 
+# make install
+
+This will build and install to modules
+	thinkpad_ec.ko	Thinkpad Embedded Controller Driver
+	hdaps.ko	Accelerometer Driver
+
+To load both modules:
+# kldload hdaps
+
+This will automatically load thinkpad_ec.ko
+
+To display the sysctl's:
+# sysctl hw.sysctl
+
+This will display the same hdaps values as the Linux version provides under sysfs plus
+	hw.hdaps.values
+		Accelerometer "X Y Temp1 MouseAct KeybAct"
+	hw.hdaps.rest_position
+		Accelerometer rest position
+
+You can also compile "hdapsmonitor" needs ncurse 
+or "hdapsmonitor_vga" needs svgalib in the hdaps directory.
+
+# cd hdaps
+# cc -lncurses -o hdapsmonitor hdapsmonitor.c
+# ./hdapsmonitor
+
+# cd hdaps
+# cc -lvga -I/usr/local/include -L/usr/local/lib -o hdapsmonitor_vga hdapsmonitor_vga.c
+# ./hdapsmonitor_vga
+
+They will display the HDAPS values like an ossciloscope. 
+
+You also get two devices
+	/dev/hdaps	Accelerometer PS/2 Mouse device
+	/dev/joy0	Joystick device
+
+Not quite acurate at the time.
+
+You can try playing "neverball" from the ports.
+
+Please report BUGS to <m.ehinger@ltur.de> and inlcude as much information as
+possible.

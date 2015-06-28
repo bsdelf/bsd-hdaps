@@ -1,0 +1,38 @@
+
+
+--- thinkpad_ec.c.orig 2008-03-31 09:40:42.000000000 +0200
++++ thinkpad_ec.c 2008-03-31 09:42:27.000000000 +0200
+@@ -471,13 +471,13 @@
+
+device_t child;
+-
+- if (!check_dmi_for_ec()) {
+- printf("thinkpad_ec: no ThinkPad embedded controller!\n");
+- return;
+- // return (-ENODEV);
+- }
+-
++/*
++ * if (!check_dmi_for_ec()) {
++ * printf("thinkpad_ec: no ThinkPad embedded controller!\n");
++ * return;
++ * // return (-ENODEV);
++ * }
++ */
+if (device_find_child(parent, DEVICE_NAME, -1)) {
+return;
+}
+@@ -499,10 +499,10 @@
+
+if (device_get_unit(dev) != 0 )
+return (ENXIO);
+-
+- if (!check_dmi_for_ec())
+- return (ENXIO);
+-
++/*
++ * if (!check_dmi_for_ec())
++ * return (ENXIO);
++ */
+//device_set_desc(dev, "IBM ThinkPad Embedded Controller");
+device_set_desc_copy(dev, smbios_values.oem_string);
